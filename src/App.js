@@ -1,7 +1,8 @@
 import React from "react";
-import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Items  from "./components/Items";
+import Categories from "./components/Categories";
+import Header from "./components/Header";
 
 
 class App extends React.Component {
@@ -66,7 +67,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        <Header orders={this.state.orders} onDelete = {this.deleteOrder}/>
+        <Header orders={this.state.orders} onDelete={this.deleteOrder} />
+        <Categories />
         <Items  items={this.state.items} onAdd={this.addToOrder}/>
         <Footer />
       </div>
