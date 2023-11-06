@@ -62,7 +62,8 @@ class App extends React.Component {
           price: '43.99'
         },
       ],
-      showFullItem: false
+      showFullItem: false,
+      fullItem: {}
     }
     this.state.currentItems = this.state.items
     this.addToOrder = this.addToOrder.bind(this)
@@ -75,15 +76,16 @@ class App extends React.Component {
       <div className="wrapper">
         <Header orders={this.state.orders} onDelete={this.deleteOrder} />
         <Categories chooseCategory={this.chooseCategory}/>
-        <Items onShowItem={this.onShowItem} items={this.state.currentItems} onAdd={this.addToOrder}/>\
-        {this.state.showFullItem && <ShowFullItem />}
+        <Items onShowItem={this.onShowItem} items={this.state.currentItems} onAdd={this.addToOrder}/>
+        {this.state.showFullItem && <ShowFullItem onAdd={this.addToOrder} onShowItem={this.onShowItem} item={this.state.fullItem}/>}
         <Footer />
       </div>
     );
   }
 
-  onShowItem () {
-    this.state({showFullItem: !this.state.showFullItem})
+  onShowItem (item) {
+    this.setState({fullItem: item})
+    this.setState({showFullItem: !this.state.showFullItem})
   }
 
   chooseCategory(category) {
